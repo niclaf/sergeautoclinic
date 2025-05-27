@@ -208,10 +208,15 @@ body {
     .services-grid {
         grid-template-columns: 1fr;
     }
-
-    /* New media query specifically for mobile background attachment */
-    body {
-      background-attachment: scroll !important; /* !important can help ensure override */
+    /* ADDED: Override background-attachment for .section_1 on smaller screens */
+    .section_1 {
+      background-attachment: scroll !important; /* Ensure scroll behavior */
+      /* Remove explicit background-image, min-height, position, size, repeat from MQ for now */
+      /* background-image: none !important; */
+      /* min-height: 75vh; */
+      /* background-position: center center; */
+      /* background-size: contain; */
+      /* background-repeat: no-repeat; */
     }
   }
   
