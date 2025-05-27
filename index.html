@@ -6,76 +6,70 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Serge Auto Clinic</title>
   <link rel="stylesheet" href="main.css" />
+  <link rel="icon" type="image/png" href="img/favicon.png">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div class="wraper">
+  <div class="wrapper">
     <!-- SECTION 1: HERO -->
     <div class="section_1">
       <div class="header_box">
         <!-- Large Hero Heading -->
-        <div class="header">Serge<br />Auto Clinic</div>
+        <div class="header" id="mainTitle" style="cursor:pointer;">Serge<br />Auto Clinic</div>
         <!-- Sub-header / Tagline -->
         <div class="sub_header">
           From Routine Maintenance to Major Repairs, Keep Your Vehicle Running Smoothly with Our Expertise and Passionate Professionals.
         </div>
       </div>
 
-      <!-- Red / Orange / Yellow Arcs -->
-      <div class="main_links">
-        <!-- RED ARC -->
-        <svg class="red_svg" viewBox="0 0 1022 2717">
-          <path
-            id="red"
-            fill="none"
-            d="M33 23L535.18 747.298C546.783 764.033 553 783.912 553 804.276V2206.58C553 2233.1 563.536 2258.54 582.289 2277.29L993 2688"
-            stroke="#FF0000"
-            stroke-width="80"
-          />
-          <text class="svg_text">
-            <!-- You can make this arc text clickable by wrapping in <a> if desired -->
-            <textPath id="text_path_1" href="#red" startOffset="200">
-              Contact Us
-            </textPath>
-          </text>
-        </svg>
-
-        <!-- ORANGE ARC -->
-        <svg class="orange_svg" viewBox="0 0 897 4335">
-          <path
-            id="orange"
-            fill="none"
-            d="M33 23L535.18 747.298C546.783 764.033 553 783.912 553 804.276V2206.58C553 2234.99 542.272 2251.61 528.513 2271.04C525.562 2275.2 522.285 2279.13 518.73 2282.79L454.539 2348.99C425.25 2374.99 425.25 2400.99 425.25 2419.99V3824.99C425.25 3851.51 436.426 3875.23 455.18 3893.99L868.57 4306"
-            stroke="#F97101"
-            stroke-width="80"
-          />
-          <text class="svg_text">
-            <textPath id="text_path_2" href="#orange" startOffset="240">
-              About Us
-            </textPath>
-          </text>
-        </svg>
-
-        <!-- YELLOW ARC -->
-        <svg class="yellow_svg" viewBox="0 0 662 5745">
-          <path
-            id="yellow"
-            fill="none"
-            d="M33 23L535.18 746.771C546.783 763.493 553 783.358 553 803.707V3944C553 3972.19 548.016 3987.42 535.54 4006.38C532.604 4010.84 529.118 4014.91 525.371 4018.72L344 4203C320 4235 314.938 4247 314.938 4297C314.938 4881.58 314.938 5420 314.938 5467C314.938 5514 331 5548 371 5570C411 5592 679 5722 679 5722"
-            stroke="#FFE005"
-            stroke-width="80"
-          />
-          <text class="svg_text">
-            <textPath id="text_path_3" href="#yellow" startOffset="240">
-              Locate Us
-            </textPath>
-          </text>
-        </svg>
+      <!-- Diagonal Block Links -->
+      <div class="diagonal-blocks">
+        <div class="diagonal-block block-about" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})"><span>Contact Us</span></div>
+        <div class="diagonal-block block-services" onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})"><span>Services</span></div>
+        <div class="diagonal-block block-contact" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})"><span>About Us</span></div>
       </div>
     </div>
 
-    <!-- SECTION 2: MAIN CONTENT -->
+    <!-- SECTION 2: MAIN CONTENT (Full Width Background) -->
     <div class="section_2">
       <div class="section_2_content">
+        <!-- NEW Combined About Us Section -->
+        <section class="about" id="about">
+          <h2>About Us</h2>
+          <p class="section-intro">
+            Welcome to Serge Auto Clinic, your trusted automotive repair shop in <br> <b>Clarence-Rockland.</b>
+          </p>
+          <br>
+          <p>
+            When Gilles Seguin took ownership of Serge Auto Clinic in 2022, he brought with him over 23 years of experience as a master technician, including specialized expertise with Toyota vehicles and extensive knowledge servicing all makes and models. As a proud resident of Rockland for over 25 years, Gilles deeply values the trust and respect he's earned in the community.
+          </p>
+          <p>
+            Working alongside him is his son Danick, a skilled and passionate mechanic committed to delivering meticulous, reliable automotive care. Together, Gilles and Danick combine their expertise and genuine dedication to ensure every vehicle receives exceptional service and personalized attention.
+          </p>
+          <p>
+            At Serge Auto Clinic, honesty, quality workmanship, and customer satisfaction are more than promises—they're principles that guide every job we undertake.
+          </p>
+          <p>
+            We look forward to welcoming you to our shop and providing the outstanding service you've come to expect from Rockland's automotive experts.
+          </p>
+          
+          <div class="team-grid">
+            <div class="team-member-card">
+              <img src="img/gilles_seguin.jpg" alt="Gilles Séguin, Owner">
+              <h3>Gilles Séguin</h3>
+              <p class="role"><strong>Role:</strong> Owner</p>
+              <p class="certifications"><strong>Certifications:</strong> Master Technician, ASE Certified</p>
+              <p class="specializations"><strong>Specializations:</strong> Toyota Expert, Engine Diagnostics, General Repair</p>
+            </div>
+            <div class="team-member-card">
+              <img src="img/danick_seguin.jpg" alt="Mechanic Danick Séguin">
+              <h3>Danick Séguin</h3>
+              <p class="certifications"><strong>Certifications:</strong> Certified Technician, Alignment Specialist</p>
+              <p class="specializations"><strong>Specializations:</strong> General Maintenance, Tire Services, Customer Relations</p>
+            </div>
+          </div>
+        </section>
+
         <!-- Services Section -->
         <section class="services" id="services">
           <h2>Our Services</h2>
@@ -110,7 +104,44 @@
           </div>
         </section>
 
-        <!-- Hours Section -->
+        <!-- Contact Section -->
+        <section class="contact" id="contact">
+          <h2>Contact Us</h2>
+          <div class="contact-details-grid">
+            <div class="contact-item">
+              <img src="img/location.png" alt="Location Pin" class="contact-icon-img">
+              <div class="contact-text">
+                <strong>Address:</strong>
+                <p>632 Gareau St, Rockland, ON K4K 1E1</p>
+              </div>
+            </div>
+            <div class="contact-item">
+              <img src="img/phone_orange.png" alt="Phone Icon" class="contact-icon-img">
+              <div class="contact-text">
+                <strong>Phone:</strong>
+                <p>+1 (613) 446-6934</p>
+              </div>
+            </div>
+            <div class="contact-item">
+              <img src="img/facebook.png" alt="Facebook Icon" class="contact-icon-img">
+              <div class="contact-text">
+                <strong>Facebook:</strong>
+                <p><a href="https://www.facebook.com/Serge-Auto-Clinic-112028178191296" target="_blank" rel="noopener noreferrer">Serge Auto Clinic on Facebook</a></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-actions">
+            <a href="tel:+1-613-446-6934" class="contact-button button-call">
+              <img src="img/phone_orange.png" alt="Call Icon" class="button-icon-img"> Call Us Now
+            </a>
+            <a href="https://www.google.com/maps/place/632+Gareau+St,+Rockland,+ON+K4K+1E1" class="contact-button button-map" target="_blank" rel="noopener noreferrer">
+              <img src="img/location.png" alt="Map Pin Icon" class="button-icon-img"> Get Directions
+            </a>
+          </div>
+        </section>
+
+        <!-- Hours Section (Moved Here) -->
         <section class="hours" id="hours">
           <h2>Opening Hours</h2>
           <div class="hours-table">
@@ -138,57 +169,12 @@
           </div>
         </section>
 
-        <!-- About Section -->
-        <section class="about" id="about">
-          <h2>Under New Ownership</h2>
-          <p>
-            Welcome to Serge Auto Clinic, proudly under the new ownership of Gilles Seguin &amp; Son. With 25 years of experience as a master technician, Gilles specializes in Toyotas but works on all makes and models. As a local resident of Rockland for over 20 years, Gilles is excited to continue serving the community with honesty, passion, and a dedication to quality service. We look forward to welcoming you to our shop!
-          </p>
-        </section>
+      </div> <!-- End of .section_2_content -->
+    </div> <!-- End of .section_2 -->
 
-        <!-- Contact Section -->
-        <section class="contact" id="contact">
-          <h2>Contact Us</h2>
-          <div class="contact-info">
-            <div class="contact-item">
-              <p><strong>Address:</strong> 632 Gareau St, Rockland, ON K4K 1E1</p>
-            </div>
-            <div class="contact-item">
-              <p><strong>Phone:</strong> <a href="tel:+1-613-446-6934">+1 (613) 446-6934</a></p>
-            </div>
-            <div class="contact-item">
-              <p><strong>Facebook:</strong> 
-                <a 
-                  href="https://www.facebook.com/Serge-Auto-Clinic-112028178191296" 
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Serge Auto Clinic on Facebook
-                </a>
-              </p>
-            </div>
-          </div>
-          <div class="contact-map">
-            <!-- Example clickable map placeholder -->
-            <a 
-              href="https://www.google.com/maps/place/632+Gareau+St,+Rockland,+ON+K4K+1E1"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <img
-                src="img/map-placeholder.png"
-                alt="Google Map Placeholder"
-                style="max-width: 100%; border: 1px solid #555; border-radius: 4px;"
-              />
-            </a>
-          </div>
-        </section>
-      </div>
-    </div>
-
-    <!-- SECTION 3: FOOTER OR EXTRA CONTENT -->
+    <!-- SECTION 3: FOOTER OR EXTRA CONTENT (Full Width) -->
     <div class="section_3">
-      <footer style="padding: 2rem; text-align: center; color: #fff;">
+      <footer style="max-width: 1200px; margin: 0 auto; padding: 2rem 2rem; text-align: center; color: #fff;">
         &copy; 2025 Serge Auto Clinic. All rights reserved.
       </footer>
     </div>
@@ -196,5 +182,10 @@
 
   <!-- SCROLL / ARC OFFSET SCRIPT -->
   <script src="main.js"></script>
+  <script>
+  document.getElementById('mainTitle').onclick = function() {
+    document.getElementById('about').scrollIntoView({behavior:'smooth'});
+  };
+  </script>
 </body>
 </html>

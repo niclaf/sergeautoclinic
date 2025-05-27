@@ -1,6 +1,5 @@
-/* BODY & BACKGROUND */
+/* === GENERAL STYLES === */
 body {
-    overflow-x: hidden;
     margin: 0;
     padding: 0;
     /* If you want the page height to expand only as needed, 
@@ -12,13 +11,14 @@ body {
   
     /* Keep your mechanic image as the background, with a dark overlay. */
     background-image:
-      linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+      linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
       url("img/mechanic_working_on_car.jpg");
     background-repeat: no-repeat;
-    background-size: auto, cover;
+    background-size: cover;
     background-position: center;
-    background-attachment: scroll, fixed;
+    background-attachment: fixed;
     font-family: "Montserrat", sans-serif;
+    overflow-x: hidden; /* Consistent with your last setup */
   }
   
   /* Montserrat Font (Local) */
@@ -27,100 +27,90 @@ body {
     src: url('Fonts/Montserrat/Montserrat-VariableFont_wght.ttf');
   }
   
-  /* HERO TEXT */
+  /* Optional: Base for wrapper if used consistently */
+  .wrapper {
+    position: relative;
+    min-height: 100vh;
+    margin-left: 0;
+    padding-left: 0;
+  }
+  
+  /* === HERO SECTION (.section_1) === */
+  .section_1 {
+    min-height: 100vh;
+    position: relative;
+  }
+  
   .header_box {
     position: absolute;
-    bottom: 25vh;
-    left: 8vw;
+    left: 5vw;
+    bottom: 10vh;
+    z-index: 2;
+    max-width: 90%;
+    padding: 1rem;
   }
+  
   .header {
-    max-width: 50vw;
-    font-size: 7vw;
-    line-height: 7vw;
+    max-width: 100vw;
+    font-size: clamp(6rem, 10vw, 10rem);
+    line-height: 1.1;
     font-weight: 800;
   }
+  
   .sub_header {
     max-width: 60vw;
-    font-size: 2vw;
-    line-height: 2vw;
-    margin-top: 1vw;
+    font-size: clamp(1.3rem, 2vw, 2rem);
+    line-height: 1.4;
+    margin-top: 1rem;
   }
   
-  /* RED / ORANGE / YELLOW LINKS (ARCS) */
-  .main_links {
-    position: absolute;
-    top: -100px;
-    right: -90px;
-    width: 800px;
-  }
-  .svg_text {
-    font-size: 300%;
-    font-weight: 900;
-    fill: rgb(0, 0, 0);
-    z-index: 999;
-  }
-  .red_svg {
-    width: 150%;
-  }
-  .orange_svg {
-    position: relative;
-    top: -3230px;
-    right: -116px;
-    width: 140%;
-  }
-  .yellow_svg {
-    position: relative;
-    top: -8640px;
-    right: -268px;
-  }
-  
-  /* WRAPPER & SECTIONS */
-  .wraper {
-    position: relative;
-  }
-  .section_1 {
-    height: 100vh;
-  }
+  /* === CONTENT SECTIONS (.section_2) === */
   .section_2 {
-    position: absolute;
-    z-index: -1;
-    top: 100vh;
-    /* Adjust the bottom boundary or remove it to allow full scroll of your content */
-    bottom: calc(100vh - 2680px);
-    width: 100%;
+    position: relative;
+    width: 100%; /* Ensure full width for background */
     background: linear-gradient(
-      0deg,
-      rgba(0, 0, 0, 0.6) 88%,
-      rgba(0, 0, 0, 0) 100%
+        0deg,
+        rgba(0, 0, 0, 0.8) 0%,
+        rgba(0, 0, 0, 0.6) 100%
     );
-  }
-  .section_2_content {
-    min-height: calc(100vh - 1400px);
-    padding: 2rem 5%;
-    /* Keep text white, or tweak for readability */
-    color: #fff;
-  }
-  .section_3 {
-    /* You can style your footer or additional content here */
+    padding: 2rem 0;
+    /* Add mask for foggy transition from hero */
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 200px);
+    mask-image: linear-gradient(to bottom, transparent 0%, black 200px);
   }
   
-  /* NEW SITE CONTENT STYLES */
-  /* SERVICES */
-  .services {
-    margin: 3rem 0;
-    text-align: center;
+  .section_2_content {
+    max-width: 1200px; /* Or your preferred max-width for content */
+    margin: 0 auto;    /* Centers this block within section_2 */
+    padding: 2rem 5%;  /* Keeps existing padding, adjust as needed */
+    color: #fff;
+    /* margin-left: 0; REMOVE - handled by margin: 0 auto */
+    /* padding-left: 0; REMOVE - handled by padding: 2rem 5% (or similar) */
+    /* text-align: center; REMOVED - individual sections can control their text-align */
   }
-  .services h2 {
+  
+  /* Individual Content Sections */
+  #about, #services, #contact, .hours {
+    padding: 3rem 0;       /* Consistent internal vertical spacing */
+    margin: 0;             /* Reset margins, spacing now handled by padding */
+    text-align: center;
+    scroll-margin-top: 2rem; /* Adjust if fixed headers obscure titles on scroll */
+  }
+  
+  .services h2, .hours h2, .about h2, .contact h2 {
     font-size: 2.5rem;
     margin-bottom: 1rem;
     font-weight: 700;
   }
+  
   .section-intro {
     max-width: 700px;
     margin: 0.5rem auto 2rem;
     color: #ccc;
     line-height: 1.4;
   }
+  
+  /* Services Grid */
   .services-grid {
     display: grid;
     gap: 1.5rem;
@@ -131,7 +121,6 @@ body {
     border: 1px solid rgba(255,255,255,0.2);
     padding: 1rem;
     border-radius: 8px;
-    text-align: left;
     transition: transform 0.3s;
   }
   .service-card:hover {
@@ -146,19 +135,10 @@ body {
     line-height: 1.4;
   }
   
-  /* HOURS */
-  .hours {
-    margin: 3rem 0;
-    text-align: center;
-  }
-  .hours h2 {
-    font-size: 2.5rem;
-    margin-bottom: 1.5rem;
-  }
+  /* Hours Table */
   .hours-table {
     max-width: 400px;
     margin: 0 auto;
-    text-align: left;
   }
   .hours-row {
     display: flex;
@@ -170,16 +150,7 @@ body {
     font-weight: 600;
   }
   
-  /* ABOUT */
-  .about {
-    margin: 3rem 0;
-    text-align: center;
-  }
-  .about h2 {
-    font-size: 2.5rem;
-    margin-bottom: 1.5rem;
-    font-weight: 700;
-  }
+  /* About Section Paragraph */
   .about p {
     max-width: 700px;
     margin: 0 auto;
@@ -187,18 +158,11 @@ body {
     color: #ccc;
   }
   
-  /* CONTACT */
-  .contact {
-    margin: 3rem 0;
-    text-align: center;
-  }
-  .contact h2 {
-    font-size: 2.5rem;
-    margin-bottom: 1.5rem;
-  }
+  /* Contact Info */
   .contact-info {
     display: flex;
     flex-direction: column;
+    /* align-items: center; REMOVED - new wrapper and section text-align handle this */
     gap: 1rem;
     max-width: 600px;
     margin: 0 auto 2rem;
@@ -214,6 +178,12 @@ body {
   .contact-item a:hover {
     text-decoration: underline;
   }
+  .contact-item a:hover {
+    text-decoration: underline;
+  }
+  .contact-item a:hover {
+    text-decoration: underline;
+  }
   .contact-map img {
     width: 100%;
     max-width: 600px;
@@ -222,23 +192,405 @@ body {
     border-radius: 4px;
   }
   
-  /* FOOTER (SECTION 3) */
+  /* === FOOTER SECTION (.section_3) === */
+  .section_3 {
+    background-color: #000; /* Set the full strip to black */
+    width: 100%;
+    padding: 0; /* Reset padding if any, footer element will handle its own */
+  }
+
   .section_3 footer {
-    background: none; /* or use a color if you prefer */
+    /* background: none; This can be removed or kept, as parent .section_3 now has the bg */
+    /* padding: 2rem; This is handled by inline styles in HTML for this specific footer */
+    /* text-align: center; Handled by inline styles */
+    /* color: #fff; Handled by inline styles */
+    /* Keep this rule empty or remove if all properties are handled by inline styles for the specific footer */
   }
   
-  /* OPTIONAL: RESPONSIVE TWEAKS */
-  @media (max-width: 768px) {
-    .header {
-      font-size: 9vw;
-      line-height: 9vw;
+  /* === RESPONSIVE MEDIA QUERIES === */
+  
+  /* Max-width 900px */
+  @media (max-width: 900px) {
+    .header_box {
+        max-width: 100%;
+        bottom: 8vh;
     }
-    .sub_header {
-      font-size: 4vw;
-      line-height: 4vw;
+    /* ADDED: Responsive adjustments for diagonal blocks at 900px */
+    .diagonal-blocks {
+        top: -12vw;
+        right: -12vw;
+        width: 80vw;
+        gap: 0.8vw;
     }
-    .svg_text {
-      font-size: 200%;
+    .diagonal-block {
+        height: 4.5vw;
+        min-height: 35px;
+        font-size: 1.4vw;
     }
   }
+  
+  /* Max-width 768px */
+  @media (max-width: 768px) {
+    .header_box {
+        left: 5vw;
+        right: 5vw;
+        bottom: 15vh;
+    }
+
+    .header {
+        max-width: 100%;
+        font-size: 13vw;
+    }
+
+    .sub_header {
+        max-width: 100%;
+        font-size: clamp(1rem, 4vw, 1.5rem);
+    }
+
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-info {
+        padding: 0 1rem;
+    }
+  }
+  
+  /* Max-width 600px */
+  @media (max-width: 600px) {
+    .header_box {
+        max-width: 100%;
+        bottom: 5vh;
+        left: 2.5vw;
+    }
+    /* ADDED: Responsive adjustments for diagonal blocks at 600px */
+    .diagonal-blocks {
+        top: -10vw;
+        right: -10vw;
+        width: 90vw;
+        gap: 0.6vw;
+    }
+    .diagonal-block {
+        height: 4vw;
+        min-height: 30px;
+        font-size: 1.3vw;
+    }
+    .header {
+        max-width: 100%;
+        font-size: 14vw;
+    }
+    .sub_header {
+        max-width: 100%;
+        font-size: clamp(1rem, 4vw, 1.5rem);
+    }
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+    .contact-info {
+        padding: 0 1rem;
+    }
+    .section_2_content {
+        padding: 1rem;
+    }
+    .service-card {
+        padding: 0.75rem;
+    }
+    .hours-table {
+        width: 100%;
+    }
+  }
+  
+  /* Max-width 480px */
+  @media (max-width: 480px) {
+    .section_2_content {
+        padding: 1rem;
+    }
+
+    .service-card {
+        padding: 0.75rem;
+    }
+
+    .hours-table {
+        width: 100%;
+    }
+  }
+  
+  html, body {
+    overflow-x: hidden;
+  }
+  
+  /* Remove modern arc block styles */
+  .arc-blocks, .arc-block {
+    display: none !important;
+  }
+  
+  .diagonal-block:hover {
+    filter: brightness(1.2);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+    transform: translateY(-4px) scale(1.02);
+  }
+  
+  /* Styles for Rotated Group of Blocks */
+  .diagonal-blocks { /* This container will be rotated */
+    position: absolute;
+    top: 17vw;  /* Adjust: Start container higher and more to the right */
+    right: -5vw; /* so rotation brings it into view from top-right */
+    width: 70vw;  /* Width of the container before rotation */
+    display: flex;
+    flex-direction: column; 
+    align-items: stretch; /* Blocks will fill width of rotated container */
+    gap: 1vw; 
+    z-index: 1;
+    transform: rotate(45deg);
+    transform-origin: top right;
+    pointer-events: none; /* Allow clicks on blocks inside */
+  }
+
+  .diagonal-block { /* Individual UN-ROTATED blocks inside the rotated container */
+    width: 150%; /* Fill width of parent (.diagonal-blocks) */
+    height: 5vw; 
+    min-height: 40px;
+    padding: 1vw 1.5vw;
+    font-size: 3vw; 
+    font-weight: 800;
+    text-align: center;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.2s, box-shadow 0.2s, filter 0.2s, transform 0.2s ease-out;
+    border: none;
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+    pointer-events: auto; /* Enable clicks on blocks */
+  }
+
+  .diagonal-block span {
+    /* No transform needed, text will be horizontal */
+    color: inherit; 
+  }
+
+  /* Colors - apply directly to .diagonal-block variants */
+  .block-about {
+    background-color: #ffe005; /* Yellow */
+    color: #222;
+  }
+  .block-services {
+    background-color: #f97101; /* Orange */
+    color: #222;
+  }
+  .block-contact {
+    background-color: #ff0000; /* Red */
+    color: #222;
+  }
+  
+  /* New Team Section Styles */
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem; /* Space below the intro paragraph */
+  }
+  
+  .team-member-card {
+    background-color: rgba(255, 255, 255, 0.05); /* Slightly lighter than service cards for subtle difference */
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 2rem 1.5rem;
+    border-radius: 8px;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  
+  .team-member-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+  }
+  
+  .team-member-card img {
+    width: 120px; /* Adjust size as needed */
+    height: 120px;
+    border-radius: 50%; /* Makes the image circular */
+    object-fit: cover; /* Ensures image covers the area without distortion */
+    margin-bottom: 1.5rem;
+    border: 3px solid #ffcc00; /* Highlight color border */
+  }
+  
+  .team-member-card h3 {
+    font-size: 1.5rem;
+    color: #ffcc00; /* Highlight color for name */
+    margin-bottom: 0.75rem;
+    font-weight: 700;
+  }
+  
+  .team-member-card .role,
+  .team-member-card .certifications,
+  .team-member-card .specializations {
+    font-size: 0.9rem;
+    color: #ccc;
+    line-height: 1.5;
+    margin-bottom: 0.5rem;
+  }
+  
+  .team-member-card .role strong,
+  .team-member-card .certifications strong,
+  .team-member-card .specializations strong {
+    color: #fff; /* Make labels slightly more prominent */
+  }
+  
+  /* === SECTION SEPARATORS (Great Separator 1 - Subtle Gradient Lines Under Titles) === */
+  /* This is 'Great Separator 1', modified to appear under H2 titles */
+  .about h2::after,      /* MODIFIED selector */
+  .services h2::after,   /* MODIFIED selector */
+  .contact h2::after    /* MODIFIED selector */ {
+    content: "";
+    display: block;
+    width: 100%; /* Full width of the parent h2 (if h2 is block) or its container */
+    max-width: 400px; /* Optional: constrain line width if h2 is very wide, centered with auto margin */
+    height: 2px;  
+    margin: 1rem auto 2rem auto; /* top, horizontal (auto for center), bottom, horizontal (auto for center) */
+                                 /* 1rem below title, 2rem before content starts */
+    background-image: linear-gradient(to right, transparent, var(--separator-color, #ccc) 50%, transparent);
+  }
+
+  .about h2::after { /* MODIFIED selector */
+    --separator-color: #ff0000; /* Red */
+  }
+
+  .services h2::after { /* MODIFIED selector */
+    --separator-color: #f97101; /* Orange */
+  }
+
+  .contact h2::after {
+    --separator-color: #ffe005; /* Yellow */
+  }
+  /* === END OF SECTION SEPARATORS (Great Separator 1 Under Titles) === */
+
+  /* Make sure H2 titles are block or inline-block for ::after to work as expected */
+  .about h2, .services h2, .contact h2 {
+     /* display: block; or display: inline-block; might be needed if not already set */
+     /* text-align: center; is likely already set on these or their parent */
+  }
+
+  /* Original general H2 styling - ensure margin-bottom is appropriate or adjusted */
+  .services h2, .hours h2, .about h2, .contact h2 {
+    font-size: 2.5rem;
+    /* margin-bottom: 1rem; Consider adjusting if the ::after margin handles it */
+    font-weight: 700;
+  }
+  
+  /* Enhanced Contact Section Styles */
+  .contact-details-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive grid */
+    gap: 2rem;
+    margin-bottom: 2.5rem; /* Space before action buttons */
+    text-align: left; /* Align text to left within grid items */
+  }
+
+  .contact-item {
+    display: flex;
+    align-items: flex-start; /* Align icon with the start of the text block */
+    gap: 1rem;
+    background-color: rgba(255, 255, 255, 0.03);
+    padding: 1.5rem;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .contact-item .icon-placeholder {
+    /* This rule might be empty now if all icons are images, or only applies to unreplaced icons */
+    /* font-size: 1.8rem; */
+    /* color: #ffcc00; */
+    /* margin-top: 0.25rem; */
+    /* flex-shrink: 0; */
+    /* width: 30px; */
+    /* text-align: center; */
+  }
+  /* Styling for new image icons in contact details */
+  .contact-icon-img {
+    width: 30px;  /* Desired width for the icon */
+    height: 30px; /* Desired height for the icon */
+    object-fit: contain; /* Scale image to fit within bounds, maintain aspect ratio */
+    margin-top: 0.25rem; /* Align icon better with first line of text */
+    flex-shrink: 0; /* Prevent icon from shrinking */
+  }
+
+  .contact-text strong {
+    display: block;
+    font-size: 1.1rem;
+    color: #fff;
+    margin-bottom: 0.3rem;
+  }
+
+  .contact-text p,
+  .contact-text p a {
+    font-size: 0.95rem;
+    color: #ccc;
+    line-height: 1.5;
+    text-decoration: none;
+  }
+
+  .contact-text p a:hover {
+    color: #ffcc00;
+    text-decoration: underline;
+  }
+
+  .contact-actions {
+    display: flex;
+    flex-wrap: wrap; /* Allow buttons to wrap on smaller screens */
+    gap: 1.5rem;
+    justify-content: center; /* Center buttons */
+    margin-top: 2rem;
+  }
+
+  .contact-button {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.8rem 1.8rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: background-color 0.3s, transform 0.2s;
+    border: 1px solid transparent;
+  }
+
+  .contact-button .icon-placeholder {
+    margin-right: 0.6rem;
+    font-size: 1.1em; /* Relative to button font size */
+  }
+  /* Styling for new image icons in buttons */
+  .button-icon-img {
+    width: 1.1em; /* Relative to button font size, similar to old icon-placeholder */
+    height: 1.1em; /* Relative to button font size */
+    object-fit: contain;
+    margin-right: 0.6rem;
+  }
+
+  .button-call {
+    background-color: #ffcc00; /* Yellow accent */
+    color: #222;
+    border-color: #ffcc00;
+  }
+  .button-call:hover {
+    background-color: #e6b800;
+    transform: translateY(-2px);
+  }
+
+  .button-map {
+    background-color: #f97101; /* Orange accent */
+    color: #fff;
+    border-color: #f97101;
+  }
+  .button-map:hover {
+    background-color: #e06500;
+    transform: translateY(-2px);
+  }
+
+  /* REMOVE or update styling for Unicode placeholder icons that were replaced */
+  /* .icon-location::before { content: "\1F4CD"; } */
+  /* .icon-phone::before { content: "\260E"; } */
+  /* .icon-facebook::before { content: "\1F517"; } REMOVING this line */
+  /* .icon-button-phone::before { content: "\260E"; margin-right: 0.5em;} */
+  /* .icon-button-mappin::before { content: "\1F4CD"; margin-right: 0.5em;} */
   
