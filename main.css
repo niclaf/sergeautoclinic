@@ -39,16 +39,18 @@ body {
   .section_1 {
     min-height: 100vh;
     position: relative;
+    z-index: 1; /* Establish a stacking context */
   }
   
-  /* New rule for the dedicated background element */
-  .hero-background {
+  /* Using a pseudo-element for the background as a more robust hack */
+  .section_1::before {
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 0; /* Sits behind the content */
+    z-index: -1; /* Place it behind the section's content */
     background-image:
       linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
       url("img/mechanic_working_on_car.jpg");
@@ -59,12 +61,14 @@ body {
   }
   
   .header_box {
-    position: absolute; /* Kept as absolute for original placement */
+    position: relative; /* Make sure content is relatively positioned */
+    z-index: 2; /* Sits on top of the parent's stacking context */
+    /* Original positioning styles */
     left: 5vw;
-    bottom: 10vh;
-    z-index: 2; /* Must be higher than .hero-background's z-index */
+    bottom: 10vh; /* Note: this might need adjustment with relative positioning */
     max-width: 90%;
     padding: 1rem;
+    padding-top: 30vh; /* Adjust vertical position */
   }
   
   .header {
@@ -308,7 +312,7 @@ body {
     flex-direction: column; 
     align-items: stretch; /* Blocks will fill width of rotated container */
     gap: 1vw; 
-    z-index: 1;
+    z-index: 2; /* Ensure it's on top */
     transform: rotate(45deg);
     transform-origin: top right;
     pointer-events: none; /* Allow clicks on blocks inside */
