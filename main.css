@@ -7,16 +7,7 @@ body {
     /* height: 8000px; */
     width: 100%;
     color: white;
-    background-color: black;
-  
-    /* Keep your mechanic image as the background, with a dark overlay. */
-    background-image:
-      linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
-      url("img/mechanic_working_on_car.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
+    background-color: black; /* Body will now have a simple black background */
     font-family: "Montserrat", sans-serif;
     overflow-x: hidden; /* Consistent with your last setup */
   }
@@ -39,36 +30,35 @@ body {
   .section_1 {
     min-height: 100vh;
     position: relative;
-    z-index: 1; /* Establish a stacking context */
+    z-index: 1; /* Establish a stacking context for its children */
   }
   
-  /* Using a pseudo-element for the background as a more robust hack */
+  /* CORRECTED implementation of the pseudo-element hack */
   .section_1::before {
     content: "";
-    position: absolute;
+    position: fixed; /* THE KEY: Position relative to the viewport */
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: -1; /* Place it behind the section's content */
+    z-index: -1; /* Place it behind all other content on the page */
     background-image:
       linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
       url("img/mechanic_working_on_car.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    background-attachment: fixed;
+    /* background-attachment is not needed; position:fixed does the job */
   }
   
   .header_box {
-    position: relative; /* Make sure content is relatively positioned */
-    z-index: 2; /* Sits on top of the parent's stacking context */
-    /* Original positioning styles */
+    position: absolute; /* CORRECTED: Back to absolute for proper placement */
     left: 5vw;
-    bottom: 10vh; /* Note: this might need adjustment with relative positioning */
+    bottom: 10vh;
+    z-index: 2; /* Sits on top of the section_1 content, below later sections */
     max-width: 90%;
     padding: 1rem;
-    padding-top: 30vh; /* Adjust vertical position */
+    /* REMOVED incorrect relative positioning and padding */
   }
   
   .header {
@@ -87,7 +77,8 @@ body {
   
   /* === CONTENT SECTIONS (.section_2) === */
   .section_2 {
-    position: relative;
+    position: relative; /* Added to ensure it scrolls OVER the fixed background */
+    z-index: 2; /* Ensures this section is above the fixed background */
     width: 100%; /* Ensure full width for background */
     background: linear-gradient(
       0deg,
@@ -108,6 +99,8 @@ body {
     /* margin-left: 0; REMOVE - handled by margin: 0 auto */
     /* padding-left: 0; REMOVE - handled by padding: 2rem 5% (or similar) */
     /* text-align: center; REMOVED - individual sections can control their text-align */
+    line-height: 1.6;
+    color: #ccc;
   }
   
   /* Individual Content Sections */
@@ -181,6 +174,8 @@ body {
   
   /* === FOOTER SECTION (.section_3) === */
   .section_3 {
+    position: relative; /* Added to ensure it scrolls OVER the fixed background */
+    z-index: 2; /* Ensures this section is above the fixed background */
     background-color: #000; /* Set the full strip to black */
     width: 100%;
     padding: 0; /* Reset padding if any, footer element will handle its own */
@@ -312,7 +307,7 @@ body {
     flex-direction: column; 
     align-items: stretch; /* Blocks will fill width of rotated container */
     gap: 1vw; 
-    z-index: 2; /* Ensure it's on top */
+    z-index: 2; /* Keep on top of other hero content */
     transform: rotate(45deg);
     transform-origin: top right;
     pointer-events: none; /* Allow clicks on blocks inside */
