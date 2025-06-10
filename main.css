@@ -1,3 +1,23 @@
+/* === LOADER STYLES === */
+#loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    z-index: 10000;
+    transition: opacity 0.7s ease-out, visibility 0.7s ease-out;
+    opacity: 1;
+    visibility: visible;
+}
+
+#loader.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
 /* === GENERAL STYLES === */
 body {
     margin: 0;
@@ -58,7 +78,6 @@ body {
     z-index: 2; /* Sits on top of the section_1 content, below later sections */
     max-width: 90%;
     padding: 1rem;
-    /* REMOVED incorrect relative positioning and padding */
   }
   
   .header {
@@ -66,6 +85,9 @@ body {
     font-size: clamp(6rem, 10vw, 10rem);
     line-height: 1.1;
     font-weight: 800;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease-out 0.2s, transform 0.8s ease-out 0.2s;
   }
   
   .sub_header {
@@ -73,6 +95,9 @@ body {
     font-size: clamp(1.3rem, 2vw, 2rem);
     line-height: 1.4;
     margin-top: 1rem;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease-out 0.4s, transform 0.8s ease-out 0.4s;
   }
   
   /* === CONTENT SECTIONS (.section_2) === */
@@ -95,12 +120,8 @@ body {
     max-width: 1200px; /* Or your preferred max-width for content */
     margin: 0 auto;    /* Centers this block within section_2 */
     padding: 2rem 5%;  /* Keeps existing padding, adjust as needed */
-    color: #fff;
-    /* margin-left: 0; REMOVE - handled by margin: 0 auto */
-    /* padding-left: 0; REMOVE - handled by padding: 2rem 5% (or similar) */
-    /* text-align: center; REMOVED - individual sections can control their text-align */
-    line-height: 1.6;
     color: #ccc;
+    line-height: 1.6;
   }
   
   /* Individual Content Sections */
@@ -136,9 +157,6 @@ body {
     padding: 1rem;
     border-radius: 8px;
     transition: transform 0.3s;
-  }
-  .service-card:hover {
-    transform: translateY(-4px);
   }
   .service-card h3 {
     margin-bottom: 0.5rem;
@@ -180,14 +198,22 @@ body {
     width: 100%;
     padding: 0; /* Reset padding if any, footer element will handle its own */
   }
-
+  
+  .footer {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    text-align: center;
+    color: #fff;
+  }
+  
   /* === RESPONSIVE MEDIA QUERIES === */
   
   /* Max-width 900px */
   @media (max-width: 900px) {
     .header_box {
         max-width: 100%;
-        bottom: 8vh;
+        bottom: 10vh;
     }
     /* ADDED: Responsive adjustments for diagonal blocks at 900px */
     .diagonal-blocks {
@@ -197,9 +223,9 @@ body {
         gap: 0.8vw;
     }
     .diagonal-block {
-        height: 4.5vw;
+        /* height: 4.5vw !important; */
         min-height: 35px;
-        font-size: 1.4vw;
+        font-size: 3vw !important;
     }
   }
   
@@ -208,7 +234,7 @@ body {
     .header_box {
         left: 5vw;
         right: 5vw;
-        bottom: 15vh;
+        bottom: 16vh;
     }
 
     .header {
@@ -224,13 +250,45 @@ body {
     .services-grid {
         grid-template-columns: 1fr;
     }
+    /* ADDED: Responsive adjustments for diagonal blocks at 600px */
+    .diagonal-blocks {
+        top: -10vw;
+        right: -10vw;
+        width: 90vw;
+        gap: 0.6vw;
+    }
+    .diagonal-block {
+        /* height: 4vw !important; */
+        min-height: 30px;
+        font-size: 3.5vw !important;
+    }
+    .header {
+        max-width: 100%;
+        font-size: 14vw;
+    }
+    .sub_header {
+        max-width: 100%;
+        font-size: clamp(1rem, 4vw, 1.5rem);
+    }
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+    .section_2_content {
+        padding: 1rem;
+    }
+    .service-card {
+        padding: 0.75rem;
+    }
+    .hours-table {
+        width: 100%;
+    }
   }
   
   /* Max-width 600px */
   @media (max-width: 600px) {
     .header_box {
         max-width: 100%;
-        bottom: 5vh;
+        bottom: 16vh;
         left: 2.5vw;
     }
     /* ADDED: Responsive adjustments for diagonal blocks at 600px */
@@ -241,9 +299,9 @@ body {
         gap: 0.6vw;
     }
     .diagonal-block {
-        height: 4vw;
+        /* height: 4vw !important; */
         min-height: 30px;
-        font-size: 1.3vw;
+        font-size: 3.5vw !important;
     }
     .header {
         max-width: 100%;
@@ -280,6 +338,10 @@ body {
     .hours-table {
         width: 100%;
     }
+
+    .diagonal-block {
+      font-size: 4vw !important;
+    }
   }
   
   html, body {
@@ -291,17 +353,11 @@ body {
     display: none !important;
   }
   
-  .diagonal-block:hover {
-    filter: brightness(1.2);
-    box-shadow: 0 6px 16px rgba(0,0,0,0.3);
-    transform: translateY(-4px) scale(1.02);
-  }
-  
   /* Styles for Rotated Group of Blocks */
   .diagonal-blocks { /* This container will be rotated */
     position: absolute;
-    top: 17vw;  /* Adjust: Start container higher and more to the right */
-    right: -5vw; /* so rotation brings it into view from top-right */
+    top: -7vw;  /* Adjust: Start container higher and more to the right */
+    right: 20vw; /* so rotation brings it into view from top-right */
     width: 70vw;  /* Width of the container before rotation */
     display: flex;
     flex-direction: column; 
@@ -311,14 +367,16 @@ body {
     transform: rotate(45deg);
     transform-origin: top right;
     pointer-events: none; /* Allow clicks on blocks inside */
+    opacity: 0;
+    transition: opacity 0.8s ease-out;
   }
 
   .diagonal-block { /* Individual UN-ROTATED blocks inside the rotated container */
-    width: 150%; /* Fill width of parent (.diagonal-blocks) */
+    width: 250%; /* Fill width of parent (.diagonal-blocks) */
     height: 5vw; 
     min-height: 40px;
     padding: 1vw 1.5vw;
-    font-size: 3vw; 
+    font-size: 3vw;
     font-weight: 800;
     text-align: center;
     box-shadow: 0 2px 6px rgba(0,0,0,0.15);
@@ -366,11 +424,6 @@ body {
     border-radius: 8px;
     text-align: center;
     transition: transform 0.3s, box-shadow 0.3s;
-  }
-  
-  .team-member-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 15px rgba(0,0,0,0.2);
   }
   
   .team-member-card img {
@@ -552,5 +605,63 @@ body {
   .button-map:hover {
     background-color: #e06500;
     transform: translateY(-2px);
+  }
+  
+  /* === INTERACTIVITY & ANIMATIONS === */
+
+  /* Page Load-in Animations */
+  body.page-loaded .header,
+  body.page-loaded .sub_header {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  body.page-loaded .diagonal-blocks {
+    opacity: 1;
+  }
+
+  /* Reveal on Scroll Animation */
+  .reveal-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  }
+
+  .reveal-on-scroll.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Hover effects for non-touch devices */
+  @media (hover: hover) {
+    .service-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .diagonal-block:hover {
+      filter: brightness(1.2);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+      transform: translateY(-4px) scale(1.02);
+    }
+
+    .team-member-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+    }
+
+    .contact-text p a:hover {
+      color: #ffcc00;
+      text-decoration: underline;
+    }
+
+    .button-call:hover {
+      background-color: #e6b800;
+      transform: translateY(-2px);
+    }
+
+    .button-map:hover {
+      background-color: #e06500;
+      transform: translateY(-2px);
+    }
   }
   

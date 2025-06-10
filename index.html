@@ -10,12 +10,14 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 </head>
 <body>
+  <div id="loader"></div>
+
   <div class="wrapper">
     <!-- SECTION 1: HERO -->
     <div class="section_1">
       <div class="header_box">
         <!-- Large Hero Heading -->
-        <div class="header" id="mainTitle" style="cursor:pointer;">Serge<br />Auto Clinic</div>
+        <div class="header" id="mainTitle">Serge<br />Auto Clinic</div>
         <!-- Sub-header / Tagline -->
         <div class="sub_header">
           From Routine Maintenance to Major Repairs, Keep Your Vehicle Running Smoothly with Our Expertise and Passionate Professionals.
@@ -24,9 +26,9 @@
 
       <!-- Diagonal Block Links -->
       <div class="diagonal-blocks">
-        <div class="diagonal-block block-about" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})"><span>Contact Us</span></div>
-        <div class="diagonal-block block-services" onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})"><span>Services</span></div>
-        <div class="diagonal-block block-contact" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})"><span>About Us</span></div>
+        <div class="diagonal-block block-about"><span>Contact Us</span></div>
+        <div class="diagonal-block block-services"><span>Services</span></div>
+        <div class="diagonal-block block-contact"><span>About Us</span></div>
       </div>
     </div>
 
@@ -34,7 +36,7 @@
     <div class="section_2">
       <div class="section_2_content">
         <!-- NEW Combined About Us Section -->
-        <section class="about" id="about">
+        <section class="about reveal-on-scroll" id="about">
           <h2>About Us</h2>
           <p class="section-intro">
             Welcome to Serge Auto Clinic, your trusted automotive repair shop in <br> <b>Clarence-Rockland.</b>
@@ -53,7 +55,7 @@
             We look forward to welcoming you to our shop and providing the outstanding service you've come to expect from Rockland's automotive experts.
           </p>
           
-          <div class="team-grid">
+          <div class="team-grid reveal-on-scroll">
             <div class="team-member-card">
               <img src="img/gilles_seguin.jpg" alt="Gilles Séguin, Owner">
               <h3>Gilles Séguin</h3>
@@ -71,7 +73,7 @@
         </section>
 
         <!-- Services Section -->
-        <section class="services" id="services">
+        <section class="services reveal-on-scroll" id="services">
           <h2>Our Services</h2>
           <p class="section-intro">
             Whether you drive a Toyota or any other make, we provide expert maintenance to keep you safe on the road.
@@ -105,7 +107,7 @@
         </section>
 
         <!-- Contact Section -->
-        <section class="contact" id="contact">
+        <section class="contact reveal-on-scroll" id="contact">
           <h2>Contact Us</h2>
           <div class="contact-details-grid">
             <div class="contact-item">
@@ -142,7 +144,7 @@
         </section>
 
         <!-- Hours Section (Moved Here) -->
-        <section class="hours" id="hours">
+        <section class="hours reveal-on-scroll" id="hours">
           <h2>Opening Hours</h2>
           <div class="hours-table">
             <div class="hours-row">
@@ -174,18 +176,13 @@
 
     <!-- SECTION 3: FOOTER OR EXTRA CONTENT (Full Width) -->
     <div class="section_3">
-      <footer style="max-width: 1200px; margin: 0 auto; padding: 2rem 2rem; text-align: center; color: #fff;">
+      <footer class="footer">
         &copy; 2025 Serge Auto Clinic. All rights reserved.
       </footer>
     </div>
   </div>
 
-  <!-- SCROLL / ARC OFFSET SCRIPT -->
+  <!-- Main Application Script -->
   <script src="main.js"></script>
-  <script>
-  document.getElementById('mainTitle').onclick = function() {
-    document.getElementById('about').scrollIntoView({behavior:'smooth'});
-  };
-  </script>
 </body>
 </html>

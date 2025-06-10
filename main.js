@@ -1,47 +1,75 @@
-// Get text path elements
-const textpath1 = document.querySelector('#text_path_1');
-const textpath2 = document.querySelector('#text_path_2');
-const textpath3 = document.querySelector('#text_path_3');
+/*
+ * Main JavaScript file for Serge Auto Clinic Website
+ * Handles:
+ * 1. Page load-in animation.
+ * 2. Revealing content sections on scroll.
+ * 3. Smooth-scrolling for navigation links.
+ */
 
-// Add click handlers for smooth scrolling
-document.querySelector('.red_svg').addEventListener('click', () => {
-    document.querySelector('#about').scrollIntoView({ behavior: 'smooth' });
-});
+document.addEventListener('DOMContentLoaded', () => {
 
-document.querySelector('.orange_svg').addEventListener('click', () => {
-    document.querySelector('#services').scrollIntoView({ behavior: 'smooth' });
-});
+  // 1. Page Load-in animation
+  const loader = document.getElementById('loader');
+  
+  // On window load, trigger the animation and then hide the loader
+  window.addEventListener('load', () => {
+    // Add the class to the body to trigger the animations
+    document.body.classList.add('page-loaded');
 
-document.querySelector('.yellow_svg').addEventListener('click', () => {
-    document.querySelector('#contact').scrollIntoView({ behavior: 'smooth' });
-});
-
-// Update text path offsets based on scroll position
-function updateTextPathOffset1(offset) {
-    textpath1.setAttribute('startOffset', 200 + offset);
-}
-
-function updateTextPathOffset2(offset) {
-    textpath2.setAttribute('startOffset', 240 + offset);
-}
-
-function updateTextPathOffset3(offset) {
-    textpath3.setAttribute('startOffset', 240 + offset);
-}
-
-// Throttle scroll event for better performance
-let ticking = false;
-function onScroll() {
-    if (!ticking) {
-        requestAnimationFrame(() => {
-            const scrollY = window.scrollY;
-            updateTextPathOffset1(scrollY * 0.9);
-            updateTextPathOffset2(scrollY * 0.83);
-            updateTextPathOffset3(scrollY * 0.85);
-            ticking = false;
-        });
-        ticking = true;
+    // Hide the loader screen after a short delay to let animations start
+    setTimeout(() => {
+        if (loader) {
+            loader.classList.add('hidden');
+        }
+    }, 100); // REVERTED: Back to shorter delay
+  });
+  
+  // As a fallback, if the load event fails or takes too long, 
+  // still run the animation and hide the loader.
+  setTimeout(() => {
+    document.body.classList.add('page-loaded');
+    if (loader) {
+        loader.classList.add('hidden');
     }
-}
+  }, 2000); // REDUCED: Shortened fallback timer
 
-window.addEventListener('scroll', onScroll);
+
+  // 2. Reveal on scroll functionality
+  const revealElements = document.querySelectorAll('.reveal-on-scroll');
+
+  const observerOptions = {
+    root: null, // relative to the viewport
+    rootMargin: '0px',
+    threshold: 0.1 // 10% of the element must be visible
+  };
+
+  const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        // Optional: stop observing the element once it's visible
+        observer.unobserve(entry.target); 
+      }
+    });
+  }, observerOptions);
+
+  revealElements.forEach(el => {
+    observer.observe(el);
+  });
+  
+  // 3. Navigation smooth-scrolling
+  const smoothScroll = (selector, targetId) => {
+    const element = document.querySelector(selector);
+    if (element) {
+      element.addEventListener('click', () => {
+        document.getElementById(targetId).scrollIntoView({ behavior: 'smooth' });
+      });
+    }
+  };
+
+  smoothScroll('#mainTitle', 'about');
+  smoothScroll('.block-about', 'contact');
+  smoothScroll('.block-services', 'services');
+  smoothScroll('.block-contact', 'about');
+
+});
